@@ -90,6 +90,12 @@ If the scan command cannot start because another antivirus owns real-time protec
 
 Do not automatically run `Start-MpWDOScan` during the evidence pass because it reboots the computer. Recommend Microsoft Defender Offline as a separate final verification step and require the user's explicit approval before triggering a reboot.
 
+For a repeatable expanded pass that captures signatures and SHA-256 hashes for
+running executables and services, use
+`scripts/collect-second-pass.ps1`. Run it from an elevated PowerShell session
+when Defender exclusions are required. It is collection-only and writes its
+report to `C:\Trojan_Audit` by default.
+
 ## Phase 3 — Inspect running processes
 
 Collect process details with CIM so command lines and parent PIDs are visible:
